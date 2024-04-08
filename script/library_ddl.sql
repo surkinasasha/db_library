@@ -15,7 +15,7 @@ CREATE TABLE Departments(
 CREATE TABLE Books (
       book_id INTEGER NOT NULL PRIMARY KEY,
       FOREIGN KEY (department_id) REFERENCES Departments(department_id),
-      title VARSHAR(200) NOT NULL,
+      title VARCHAR(200) NOT NULL,
       author VARCHAR(200) NOT NULL,
       volume INTEGER NOT NULL,
       publishing_year INTEGER NOT NULL,
