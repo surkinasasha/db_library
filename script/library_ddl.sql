@@ -19,7 +19,7 @@ CREATE TABLE Books (
       author VARCHAR(200) NOT NULL,
       volume INTEGER NOT NULL,
       publishing_year INTEGER NOT NULL,
-      status VARCHAR(20) NOT NULL
+      book_status VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE Reservation(
@@ -40,7 +40,8 @@ CREATE TABLE Accounting_of_books(
 );
 
 CREATE TABLE Debts(
+      debt_id INTEGER NOT NULL PRIMARY KEY,
       FOREIGN KEY (movement_id) REFERENCES Accounting_of_books(movement_id),
       FOREIGN KEY (reader_id) REFERENCES Readers(reader_id),
-      status VARCHAR(20) NOT NULL
+      debt_status VARCHAR(20) NOT NULL
 );
