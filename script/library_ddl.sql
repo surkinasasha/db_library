@@ -1,6 +1,8 @@
 CREATE TABLE Readers (
       reader_id INTEGER NOT NULL PRIMARY KEY,
-      full_name VARCHAR(200) NOT NULL,
+      surname VARCHAR(200) NOT NULL,
+      name VARCHAR(200) NOT NULL,
+      middle_name VARCHAR(200),
       date_of_birth DATE NOT NULL,
       phone_number VARCHAR(20) NOT NULL
 );
@@ -14,7 +16,7 @@ CREATE TABLE Books (
       book_id INTEGER NOT NULL PRIMARY KEY,
       FOREIGN KEY (department_id) REFERENCES Departments(department_id),
       title VARSHAR(200) NOT NULL,
-      author VARCHAR(200) NOT NULL,
+      author VARCHAR(200),
       volume INTEGER NOT NULL,
       publishing_year INTEGER NOT NULL,
       status VARCHAR(20) NOT NULL
