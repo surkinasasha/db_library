@@ -131,9 +131,9 @@ FROM Reservation
 WHERE reserv_date >= '2023-01-01'
 AND end_of_reservation <= '2023-12-31'; 
 
-/*Получить идентификатор читателей, которые имеет долги*/
+/*Получить идентификатор, имя, фамилию читателей и номер читателей, которые имеет долги*/
 
-SELECT reader_id
+SELECT reader_id, name, surname, phone_number
 FROM Debts
 WHERE debt_status = 'Открыт'; 
 
@@ -159,7 +159,34 @@ SELECT book_id, title
 FROM Books
 WHERE department_id IN (SELECT department_id FROM Departments WHERE dep_name = 'Отдел художественной литературы');
 
-/* 
+/* Получить название и автора топ-5 книг по количеству бронирований */
+
+SELECT title, author, COUNT(*) AS total_reservations 
+FROM Books 
+JOIN Reservation ON Books.book_id = Reservation.book_id 
+GROUP BY title, author 
+ORDER BY total_reservations DESC LIMIT 5; 
+
+/* Получить количество читателей библиотеки */
+
+SELECT COUNT(*) AS total_readers 
+FROM Readers; 
+
+/* Получить название, автора и год публикации экземпляров книг, изданных с 2000 по 2010 год, и сортирует результаты по году издания */
+
+SELECT title, author, publishing_year
+FROM Books 
+WHERE publishing_year BETWEEN 2000 AND 2020
+ORDER BY publishing_year;
+
+/* Получить имя и фамилию самого молодого читателя */
+SELECT surname, name
+FROM Readers
+WHERE date_of_birth < (SELECT MAX(date_of_birth) FROM Readers); 
+
+
+
+
 
 
 
